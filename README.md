@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Inventory UI (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React frontend for the **Inventory Management API** backend (FastAPI).  
+It provides a simple dashboard to manage suppliers, inventory, orders, and reports visually.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Dashboard**
+  - High-level stats: total suppliers, inventory items, orders, raw materials
+  - Clickable cards to jump into each section
 
-### `npm start`
+- **Suppliers**
+  - View all suppliers in a styled table
+  - Add a new supplier with a modal form (name, email, phone)
+  - Delete suppliers
+  - Error message if the backend is not reachable
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Inventory**
+  - View all inventory items (ID, item name, quantity, storage ID)
+  - Add new inventory items (with quantity and storage ID)
+  - Quantity badges with color-coded status (In Stock / Low Stock / Critical)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Orders**
+  - View purchase orders (order ID, supplier, material, quantity, total cost)
+  - Create new orders via a modal form
 
-### `npm test`
+- **Reports**
+  - Supplier spending report (total cost per supplier)
+  - Visual bar representation of spending
+  - Total spending summary
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Layout & UI**
+  - Sidebar navigation with sections for Dashboard, Suppliers, Inventory, Orders, Reports
+  - Responsive shell using inline styles
+  - Modal dialogs for adding data
+  - Basic error banners and loading states
 
-### `npm run build`
+## Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React (functional components with `useState` and `useEffect`)
+- Fetch API for HTTP requests
+- Inline CSS-in-JS style object (`styles`) for layout and design
+- FastAPI backend running at `http://127.0.0.1:8000` (expected)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+- Node.js and npm installed
+- The FastAPI backend running locally on port **8000**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Backend repo (example):  
+`https://github.com/tharuncsb0b19/inventory-management-api`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone and install dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/tharuncsb0b19/inventory-ui.git
+cd inventory-ui
+npm install
+```
 
-## Learn More
+### Running the app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Start the development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run dev   # if using Vite
+# or
+npm start     # if using Create React App
+```
 
-### Code Splitting
+Then open the URL shown in the terminal (often `http://localhost:5173` for Vite or `http://localhost:3000` for CRA).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Make sure the backend is running at:
 
-### Analyzing the Bundle Size
+```bash
+http://127.0.0.1:8000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+because the frontend calls endpoints like:
 
-### Making a Progressive Web App
+- `/suppliers`
+- `/inventory`
+- `/orders`
+- `/reports/supplier-spending`
+- `/rawmaterials`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Project Structure
 
-### Advanced Configuration
+Key files:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `src/App.js` – main React component, routing between Dashboard / Suppliers / Inventory / Orders / Reports
+- `src/index.js` or `main.jsx` – entry point bootstrapping React
+- `package.json` – scripts and dependencies
 
-### Deployment
+## Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Possible next steps:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add editing for suppliers, inventory, and orders
+- Add authentication/authorization
+- Improve responsive layout for smaller screens
+- Add tests (Jest/React Testing Library)
