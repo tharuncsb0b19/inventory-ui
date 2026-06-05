@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-const API = "http://127.0.0.1:8000";
-
+const API = "https://inventory-management-api-kseg.onrender.com";
 // ── Icons ─────────────────────────────────────────────────────────
 const Icon = ({ name, size = 18 }) => {
   const icons = {
